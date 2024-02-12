@@ -3,6 +3,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const dotenv = require('dotenv');
+dotenv.config();
 const _= require("lodash");
 
 
@@ -13,7 +15,10 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb+srv://Megha_hr:Megha123@cluster0.ofndq.mongodb.net/todolistdb",{useNewUrlParser:true,useUnifiedTopology: true,useFindAndModify: false });
+
+const user=process.env.USER_NAME;
+const password =process.env.USER_PASSWORD
+mongoose.connect(process.env.MONGODB_URL,{useNewUrlParser:true,useUnifiedTopology: true,useFindAndModify: false });
 const itemSchema = {
   name:String
 };
